@@ -17,23 +17,21 @@ public class ShooterSubsystem {
     TalonFX leftShooterMotor;
     TalonFX rightShooterMotor;
     TalonFXConfigurator leftShooterConfigurator;
-	TalonFXConfigurator rightShooterConfigurator;
 
-public ShooterSubsystem() {
+    public ShooterSubsystem() {
 
-    //setting the motors
-    leftShooterMotor = new TalonFX(Constants.Shooter.leftShooterMotor);
-    rightShooterMotor = new TalonFX(Constants.Shooter.rightShooterMotor);
-    leftShooterMotor.setNeutralMode(NeutralModeValue.Coast);
-    rightShooterMotor.setNeutralMode(NeutralModeValue.Brake);
-    rightShooterMotor.setControl(new Follower(4, true));
+        // setting the motors
+        leftShooterMotor = new TalonFX(Constants.Shooter.leftShooterMotorID);
+        rightShooterMotor = new TalonFX(Constants.Shooter.rightShooterMotorID);
+        leftShooterMotor.setNeutralMode(NeutralModeValue.Coast);
+        rightShooterMotor.setNeutralMode(NeutralModeValue.Coast);
+        rightShooterMotor.setControl(new Follower(4, true));
 
-    //PID tuning
-    leftShooterConfigurator = leftShooterMotor.getConfigurator();
-	leftShooterConfigurator.apply(new Slot0Configs().withKP(0).withKI(0).withKD(0));
-    rightShooterConfigurator = rightShooterMotor.getConfigurator();
-	rightShooterConfigurator.apply(new Slot0Configs().withKP(0).withKI(0).withKD(0));
-	
+        // PID tuning
+        leftShooterConfigurator = leftShooterMotor.getConfigurator();
+        leftShooterConfigurator.apply(
+                new Slot0Configs().withKP(Constants.Shooter.Shooter_kD).withKI(Constants.Shooter.Shooter_kI)
+                        .withKD(Constants.Shooter.Shooter_kD));
 
-}
+    }
 }

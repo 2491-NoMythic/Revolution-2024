@@ -29,12 +29,15 @@ public final class Constants {
     public final static double driveSpeed = 1;
     public final static double turnSpeed = .5;
     public static final double MAX_POWER_OUTPUT = 0.3;
-
+    
+    public static final double Drivetrain_KP = .2;
+    public static final double Drivetrain_KI = 1;
+    public static final double Drivetrain_KD = .01;
   }
 
   public final class Shooter {
-    public final static int leftShooterMotor = 4;
-    public final static int rightShooterMotor = 5;
+    public final static int leftShooterMotorID = 4;
+    public final static int rightShooterMotorID = 5;
     public final static int servo1PwmID = 6;
     public final static int servo2PwmID = 7;
     public final static int photonCannonPwmID = 8;
@@ -43,24 +46,40 @@ public final class Constants {
     public final static double shooterWheelDiameter = 4.0; // Inches
     public final static double shooterEncoderToInches = shooterWheelDiameter * Math.PI / shooterEncoderTicks; // Makes number of inches
     public final static double shooterEncoderVelocityToRPS = 1.0 / shooterEncoderTicks * 10;
-    // Speeds
     public static final double shootSpeedRpm = 20000; // Rpm
     public static final double shootSpeedRps = 19500;// TODO change for reality.
+
+    public static final double Shooter_kP = 0.00002;
+    public static final double Shooter_kI = 0;
+    public static final double Shooter_kD = 0.0008;
   }
 
   public final class SpinDexer {
-    public final static int spindDexerMotor = 9;
+    public final static int spindDexerMotorID = 9;
     public final static double rotateClockWise = .33; 
 		public final static double rotateCounterClockWise = -.33;
+    public static final double SpinDexer_kP = 0.00002;
+    public static final double SpinDexer_kI = 0;
+    public static final double SpinDexer_kD = 0.0008;
+    public static final double SpinDexer_kFF = 0.000085;
   }
 
   public final class Intake {
-    public final static int intakeMotor = 10;
+    public final static int intakeMotorID = 10;
     public final static double intakeSpeed = .25;
     public final static double outtakeSpeed = -.25;
-    public static final double INTAKE_kP = 0.00002;
-    public static final double INTAKE_kI = 0;
-    public static final double INTAKE_kD = 0.0008;
-    public static final double INTAKE_kFF = 0.000085;
+    public static final double Intake_kP = 0.00002;
+    public static final double Intake_kI = 0;
+    public static final double Intake_kD = 0.0008;
+    public static final double Intake_kFF = 0.000085;
+  }
+
+  public final class ShooterFeeder {
+    public final static int ShooterFeederMotorID = 11;
+    public final static double shooterFeeding = .5;
+    public static final double ShooterFeeder_kP = 0;
+    public static final double ShooterFeeder_kI = 0;
+    public static final double ShooterFeeder_kD = 0;
+    public static final double ShooterFeeder_kFF = 0;
   }
 }

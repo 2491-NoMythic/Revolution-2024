@@ -25,6 +25,7 @@ import edu.wpi.first.networktables.DoubleSubscriber;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -44,9 +45,9 @@ public class RobotContainer {
 
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private DrivetrainSubsystem driveTrainSubsystem;
-  private IntakeSubsystem intakeSubsystem;
-  private SpinDexerSubsystem spinDexerSubsystem;
-  private ShooterSubsystem shooterSubsystem;
+  private IntakeSubsystem intake;
+  private SpinDexerSubsystem spinDexer;
+  private ShooterSubsystem shooter;
   DriveCommand defaultDriveCommand;
   private Joystick m_mainJoystick;
 
@@ -56,6 +57,8 @@ public class RobotContainer {
   BooleanSupplier outtakSupplier;
   DoubleSupplier moveDoubleSupplier;
   DoubleSupplier turnDoubleSupplier;
+  ParallelCommandGroup intakeCommand;
+  ParallelCommandGroup shootingCommand;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -87,18 +90,22 @@ public class RobotContainer {
     driveTrainSubsystem = new DrivetrainSubsystem();
     defaultDriveCommand = new DriveCommand(
     driveTrainSubsystem, 
-    moveDoubleSupplier = ()-> m_mainJoystick.getY(), 
-    turnDoubleSupplier = ()-> m_mainJoystick.getX());
+        moveDoubleSupplier = ()-> m_mainJoystick.getY(), 
+        turnDoubleSupplier = ()-> m_mainJoystick.getX());
     driveTrainSubsystem.setDefaultCommand(defaultDriveCommand);
    }
 
   private void intakeInst() {
-    
+    intake = new IntakeSubsystem();
   }
 
-  private void shooterInst() {}
+  private void shooterInst() {
+    shooter = new ShooterSubsystem();
+  }
 
-  private void spindexerInst() {}
+  private void spindexerInst() {
+    spinDexer = new SpinDexerSubsystem();
+  }
 
 
 

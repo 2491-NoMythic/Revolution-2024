@@ -38,9 +38,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
 		driveRightMotor2.setNeutralMode(NeutralModeValue.Brake);
 
 		leftConfigurator = driveLeftMotor1.getConfigurator();
-		leftConfigurator.apply(new Slot0Configs().withKP(0.2).withKI(1).withKD(0.01));
+		leftConfigurator.apply(
+		new Slot0Configs().
+			withKP(Constants.Drivetrain.Drivetrain_KP).
+			withKI(Constants.Drivetrain.Drivetrain_KI).
+			withKD(Constants.Drivetrain.Drivetrain_KP));
 		rightConfigurator = driveRightMotor1.getConfigurator();
-		rightConfigurator.apply(new Slot0Configs().withKP(0.2).withKI(1).withKD(0.01));
+		rightConfigurator.apply(
+			new Slot0Configs().
+			withKP(Constants.Drivetrain.Drivetrain_KP).
+			withKI(Constants.Drivetrain.Drivetrain_KI).
+			withKD(Constants.Drivetrain.Drivetrain_KP));
 		
 		// Setting Followers
 
