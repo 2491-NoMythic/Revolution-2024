@@ -20,13 +20,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 	TalonFX driveLeftMotor2;
 	TalonFX driveRightMotor2;
 	XiaohanArcade m_robotDrive;
-	TalonFXConfigurator left1Configurator;
-	TalonFXConfigurator left2Configurator;
-	TalonFXConfigurator right1Configurator;
-	TalonFXConfigurator right2Configurator;
+	TalonFXConfigurator leftConfigurator;
+	TalonFXConfigurator rightConfigurator;
 
-
-	public void Drivetrain() {
+	public DrivetrainSubsystem() {
 
 		// creating motors
 		driveLeftMotor1 = new TalonFX(Constants.Drivetrain.driveTalonLeftMotor1);
@@ -39,16 +36,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
 		driveRightMotor1.setNeutralMode(NeutralModeValue.Brake);
 		driveLeftMotor2.setNeutralMode(NeutralModeValue.Brake);
 		driveRightMotor2.setNeutralMode(NeutralModeValue.Brake);
-		
-		left1Configurator = driveLeftMotor1.getConfigurator();
-		left1Configurator.apply(new Slot0Configs().withKP(0).withKI(0).withKD(0));
-		left2Configurator = driveLeftMotor2.getConfigurator();
-		left2Configurator.apply(new Slot0Configs().withKP(0).withKI(0).withKD(0));
-		right1Configurator = driveRightMotor1.getConfigurator();
-		right1Configurator.apply(new Slot0Configs().withKP(0).withKI(0).withKD(0));
-		right2Configurator = driveRightMotor2.getConfigurator();
-		right2Configurator.apply(new Slot0Configs().withKP(0).withKI(0).withKD(0));
 
+		leftConfigurator = driveLeftMotor1.getConfigurator();
+		leftConfigurator.apply(new Slot0Configs().withKP(0.2).withKI(1).withKD(0.01));
+		rightConfigurator = driveRightMotor1.getConfigurator();
+		rightConfigurator.apply(new Slot0Configs().withKP(0.2).withKI(1).withKD(0.01));
+		
 		// Setting Followers
 
 		driveLeftMotor2.setControl(new Follower(driveLeftMotor1.getDeviceID(), false));
@@ -58,11 +51,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
 	}
 
 	public void DifferentialDrive(double speed, double rotation) {
-		m_robotDrive.arcadeDrive(Constants.Drivetrain.driveSpeed, Constants.Drivetrain.turnSpeed);
+		m_robotDrive.arcadeDrive(speed, rotation);
 	}
 
 	public void DifferentialDriveStop(double speed, double rotation) {
 		m_robotDrive.arcadeDrive(0, 0);
 	}
 
-	}
+}

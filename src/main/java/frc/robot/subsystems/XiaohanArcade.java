@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import java.util.function.DoubleConsumer;
 
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 /**
@@ -108,7 +109,7 @@ public class XiaohanArcade extends RobotDriveBase implements Sendable, AutoClose
    */
   @SuppressWarnings({"removal", "this-escape"})
   public XiaohanArcade(TalonFX leftMotor, TalonFX rightMotor) {
-    this((double output) -> leftMotor.setControl(new VelocityDutyCycle(output)), (double output) -> rightMotor.setControl(new VelocityDutyCycle(output)));
+    this((double output) -> leftMotor.setControl(new VelocityVoltage(output)), (double output) -> rightMotor.setControl(new VelocityVoltage(output)));
     SendableRegistry.addChild(this, leftMotor);
     SendableRegistry.addChild(this, rightMotor);
   }

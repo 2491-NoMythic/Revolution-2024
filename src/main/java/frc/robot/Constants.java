@@ -50,14 +50,14 @@ public final class Constants {
 
   public final class SpinDexer {
     public final static int spindDexerMotor = 9;
-    public static double sortModeReverseTime = .8; 
-		public static double sortModeMaxPower = 0.5;
+    public final static double rotateClockWise = .33; 
+		public final static double rotateCounterClockWise = -.33;
   }
 
   public final class Intake {
     public final static int intakeMotor = 10;
-    public final static double intakeSpeed = .75;
-    public final static double outtakeSpeed = -.75;
+    public final static double intakeSpeed = .25;
+    public final static double outtakeSpeed = -.25;
     public static final double INTAKE_kP = 0.00002;
     public static final double INTAKE_kI = 0;
     public static final double INTAKE_kD = 0.0008;
