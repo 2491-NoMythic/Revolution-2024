@@ -31,8 +31,10 @@ public class ShooterSubsystem extends SubsystemBase{
         // PID tuning
         leftShooterConfigurator = leftShooterMotor.getConfigurator();
         leftShooterConfigurator.apply(
-                new Slot0Configs().withKP(Constants.Shooter.Shooter_kD).withKI(Constants.Shooter.Shooter_kI)
-                        .withKD(Constants.Shooter.Shooter_kD));
+                new Slot0Configs().
+                withKP(Constants.Shooter.Shooter_kP).
+                withKI(Constants.Shooter.Shooter_kI).
+                withKD(Constants.Shooter.Shooter_kD));
     }
 
     public void ShooterOn(double shooterSpeed) {

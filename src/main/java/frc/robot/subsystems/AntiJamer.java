@@ -20,12 +20,12 @@ public class AntiJamer extends SubsystemBase {
 	SparkPIDController antiJamController;
 
 	public AntiJamer() {
-		antiJamMotor = new CANSparkMax(Constants.Intake.intakeMotorID, MotorType.kBrushless);
+		antiJamMotor = new CANSparkMax(Constants.AntiJamer.AntiJamerMotorID, MotorType.kBrushless);
         antiJamMotor.restoreFactoryDefaults();
-    antiJamController.setP(Constants.Intake.Intake_kP);
-    antiJamController.setI(Constants.Intake.Intake_kI);
-    antiJamController.setD(Constants.Intake.Intake_kD);
-    antiJamController.setFF(Constants.Intake.Intake_kFF);
+    antiJamController.setP(Constants.AntiJamer.Antijamer_kP);
+    antiJamController.setI(Constants.AntiJamer.Antijamer_kI);
+    antiJamController.setD(Constants.AntiJamer.Antijamer_kD);
+    antiJamController.setFF(Constants.AntiJamer.Antijamer_kFF);
     antiJamController = antiJamMotor.getPIDController();
     antiJamMotor.setIdleMode(IdleMode.kCoast);
     antiJamMotor.setSmartCurrentLimit(25, 40, 1000);

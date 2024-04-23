@@ -48,6 +48,7 @@ public final class Constants {
     public final static double shooterEncoderVelocityToRPS = 1.0 / shooterEncoderTicks * 10;
     public static final double shootSpeedRpm = 20000; // Rpm
     public static final double shootSpeedRps = 19500;// TODO change for reality.
+    public final static double shooterSpeed = .5;
 
     public static final double Shooter_kP = 0.00002;
     public static final double Shooter_kI = 0;
@@ -81,5 +82,13 @@ public final class Constants {
     public static final double ShooterFeeder_kI = 0;
     public static final double ShooterFeeder_kD = 0;
     public static final double ShooterFeeder_kFF = 0;
+  }
+
+  public final class AntiJamer {
+    public final static int AntiJamerMotorID = 12;
+    public static final double Antijamer_kP = 0;
+    public static final double Antijamer_kI = 0;
+    public static final double Antijamer_kD = 0;
+    public static final double Antijamer_kFF = 0;
   }
 }

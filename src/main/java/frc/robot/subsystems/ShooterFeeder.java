@@ -22,10 +22,10 @@ public class ShooterFeeder extends SubsystemBase {
 	public void Intake() {
 		//intakeMotor = new CANSparkMax(Constants.Intake.intakeMotor, MotorType.kBrushless);
     shooterFeederMotor.restoreFactoryDefaults();
-    shooterFeederController.setP(Constants.SpinDexer.SpinDexer_kP);
-    shooterFeederController.setI(Constants.SpinDexer.SpinDexer_kI);
-    shooterFeederController.setD(Constants.SpinDexer.SpinDexer_kD);
-    shooterFeederController.setFF(Constants.SpinDexer.SpinDexer_kFF);
+    shooterFeederController.setP(Constants.ShooterFeeder.ShooterFeeder_kP);
+    shooterFeederController.setI(Constants.ShooterFeeder.ShooterFeeder_kI);
+    shooterFeederController.setD(Constants.ShooterFeeder.ShooterFeeder_kD);
+    shooterFeederController.setFF(Constants.ShooterFeeder.ShooterFeeder_kFF);
     shooterFeederController = shooterFeederMotor.getPIDController();
     shooterFeederMotor.setIdleMode(IdleMode.kCoast);
     shooterFeederMotor.setSmartCurrentLimit(25, 40, 1000);
