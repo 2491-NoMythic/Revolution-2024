@@ -10,10 +10,11 @@ import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 /** Add your docs here. */
-public class ShooterSubsystem {
+public class ShooterSubsystem extends SubsystemBase{
     TalonFX leftShooterMotor;
     TalonFX rightShooterMotor;
     TalonFXConfigurator leftShooterConfigurator;
@@ -32,6 +33,14 @@ public class ShooterSubsystem {
         leftShooterConfigurator.apply(
                 new Slot0Configs().withKP(Constants.Shooter.Shooter_kD).withKI(Constants.Shooter.Shooter_kI)
                         .withKD(Constants.Shooter.Shooter_kD));
-
     }
+
+    public void ShooterOn(double shooterSpeed) {
+        leftShooterMotor.set(shooterSpeed);
+    }
+
+    public void shooterOff(double shooterSpeed) {
+        leftShooterMotor.set(0);
+    }
+
 }
