@@ -7,19 +7,18 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 
-public class ShooterFeeder extends SubsystemBase {
+public class ShooterFeederSubsystem extends SubsystemBase {
   	
 	CANSparkMax shooterFeederMotor;
 	SparkPIDController shooterFeederController;
 
-	public ShooterFeeder() {
+	public ShooterFeederSubsystem() {
 		//shooterFeederMotor = new CANSparkMax(Constants.Intake.intakeMotor, MotorType.kBrushless);
     shooterFeederMotor.restoreFactoryDefaults();
     shooterFeederController.setP(Constants.ShooterFeeder.ShooterFeeder_kP);
@@ -44,6 +43,8 @@ public class ShooterFeeder extends SubsystemBase {
     public void setShooterFeederVelocity(double shooterFeederVelocity) {
         shooterFeederController.setReference(shooterFeederVelocity, CANSparkMax.ControlType.kVelocity);
   }
+
+  
   @Override
   public void periodic() {
   }

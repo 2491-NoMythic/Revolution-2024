@@ -11,7 +11,7 @@ public class PhotonCannon extends SubsystemBase {
 	private Relay photonCannonRelay;
 
 	public PhotonCannon() {
-        photonCannonRelay = new Relay(Constants.Shooter.photonCannonPwmID);
+        photonCannonRelay = new Relay(Constants.Shooter.PhotonCannonPwmID);
         shutdownPhotonCannon();
 	}
 

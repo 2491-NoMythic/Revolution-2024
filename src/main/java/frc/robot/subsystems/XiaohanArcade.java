@@ -14,10 +14,8 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.drive.RobotDriveBase;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import java.util.function.DoubleConsumer;
 
-import com.ctre.phoenix6.controls.VelocityDutyCycle;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -68,6 +66,8 @@ public class XiaohanArcade extends RobotDriveBase implements Sendable, AutoClose
   private double m_rightOutput;
 
   private boolean m_reported;
+  
+  
 
   /**
    * Wheel speeds for a differential drive.
@@ -107,7 +107,7 @@ public class XiaohanArcade extends RobotDriveBase implements Sendable, AutoClose
    * @param leftMotor Left motor.
    * @param rightMotor Right motor.
    */
-  @SuppressWarnings({"removal", "this-escape"})
+  @SuppressWarnings({"this-escape"})
   public XiaohanArcade(TalonFX leftMotor, TalonFX rightMotor) {
     this((double output) -> leftMotor.setControl(new VelocityVoltage(output)), (double output) -> rightMotor.setControl(new VelocityVoltage(output)));
     SendableRegistry.addChild(this, leftMotor);

@@ -19,7 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
   SparkPIDController intakeController;
 
   public IntakeSubsystem() {
-    intakeMotor = new CANSparkMax(Constants.Intake.intakeMotorID, MotorType.kBrushless);
+    intakeMotor = new CANSparkMax(Constants.Intake.IntakeMotorID, MotorType.kBrushless);
     intakeMotor.restoreFactoryDefaults();
     intakeController.setP(Constants.Intake.Intake_kP);
     intakeController.setI(Constants.Intake.Intake_kI);

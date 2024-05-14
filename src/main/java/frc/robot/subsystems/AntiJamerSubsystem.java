@@ -14,12 +14,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 
-public class AntiJamer extends SubsystemBase {
+public class AntiJamerSubsystem extends SubsystemBase {
   	
 	CANSparkMax antiJamMotor;
 	SparkPIDController antiJamController;
 
-	public AntiJamer() {
+	public AntiJamerSubsystem() {
 		antiJamMotor = new CANSparkMax(Constants.AntiJamer.AntiJamerMotorID, MotorType.kBrushless);
     antiJamMotor.restoreFactoryDefaults();
     antiJamController.setP(Constants.AntiJamer.Antijamer_kP);

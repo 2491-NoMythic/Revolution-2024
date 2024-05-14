@@ -24,7 +24,7 @@ public class ShootingCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.ShooterOn(Constants.Shooter.shooterSpeed);
+    shooter.ShooterOn(Constants.Shooter.ShooterSpeed);
   }
 
   // Called once the command ends or is interrupted.

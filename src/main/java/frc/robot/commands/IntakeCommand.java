@@ -4,13 +4,9 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.SpinDexerSubsystem;
 
 public class IntakeCommand extends Command {
   IntakeSubsystem intake;
@@ -30,7 +26,7 @@ public class IntakeCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { 
-    intake.Intaking(Constants.Intake.intakeSpeed);
+    intake.Intaking(Constants.Intake.IntakeSpeed);
   }
 
   // Called once the command ends or is interrupted.

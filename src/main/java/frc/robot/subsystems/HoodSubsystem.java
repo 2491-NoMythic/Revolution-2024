@@ -14,8 +14,8 @@ public class HoodSubsystem extends SubsystemBase {
 	 */
 	public HoodSubsystem() {
 		
-		servo1 = new Servo(Constants.Shooter.servo1PwmID);
-		servo2 = new Servo(Constants.Shooter.servo2PwmID);
+		servo1 = new Servo(Constants.Shooter.Servo1PwmID);
+		servo2 = new Servo(Constants.Shooter.Servo2PwmID);
 		
 		SmartDashboard.putNumber("hood position overide", 0);
 	}
@@ -36,12 +36,12 @@ public class HoodSubsystem extends SubsystemBase {
 		SmartDashboard.putNumber("servo1", servo1.getAngle());
 		SmartDashboard.putNumber("servo2", servo2.getAngle());
 
-		final double hoodPosition = SmartDashboard.getNumber("hood position overide", 0);
+		//final double hoodPosition = SmartDashboard.getNumber("hood position overide", 0);
 
 		//if (hoodPosition > 0 && hoodPosition != frc.robot.Shooter.shooterHoodPosition)
-		{
+		
 			//frc.robot.Shooter.shooterHoodPosition = hoodPosition;
-		}
+		
 		//SmartDashboard.putNumber("Angle", frc.robot.Shooter.shooterHoodPosition);
 	}
 }

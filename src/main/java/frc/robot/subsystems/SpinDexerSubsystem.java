@@ -19,7 +19,7 @@ public class SpinDexerSubsystem extends SubsystemBase{
 	SparkPIDController spinDexerController;
 
 	public SpinDexerSubsystem() {
-		spinDexerMotor = new CANSparkMax(Constants.SpinDexer.spindDexerMotorID, MotorType.kBrushless);
+		spinDexerMotor = new CANSparkMax(Constants.SpinDexer.SpindDexerMotorID, MotorType.kBrushless);
 		spinDexerMotor.restoreFactoryDefaults();
 		spinDexerController.setP(Constants.SpinDexer.SpinDexer_kP);
 		spinDexerController.setI(Constants.SpinDexer.SpinDexer_kI);

@@ -7,7 +7,6 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -39,7 +38,7 @@ public class DriveCommand extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.DifferentialDrive(moveSupplier.getAsDouble(), turnSupplier.getAsDouble());
+        drivetrain.DifferentialDrive(moveSupplier.getAsDouble(), turnSupplier.getAsDouble(), 50, 50);
     }
 
     // Called once the command ends or is interrupted.
