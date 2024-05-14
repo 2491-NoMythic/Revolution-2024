@@ -18,7 +18,7 @@ public class IntakeSubsystem extends SubsystemBase {
   CANSparkMax intakeMotor;
   SparkPIDController intakeController;
 
-  public void Intake() {
+  public IntakeSubsystem() {
     intakeMotor = new CANSparkMax(Constants.Intake.intakeMotorID, MotorType.kBrushless);
     intakeMotor.restoreFactoryDefaults();
     intakeController.setP(Constants.Intake.Intake_kP);
@@ -32,27 +32,26 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeMotor.burnFlash();
   }
 
-  public void Intaking(double intakerunspeed) {
-    intakeMotor.set(intakerunspeed);
-    SmartDashboard.putNumber("Intake %", intakerunspeed);
+  public void Intaking(double intakeSpeed) {
+    intakeMotor.set(intakeSpeed);
+    SmartDashboard.putNumber("Intake Speed", intakeSpeed);
   }
 
-  public void Outtaking(double intakerunspeed) {
-    intakeMotor.set(intakerunspeed);
-    SmartDashboard.putNumber("Intake %", intakerunspeed);
+  public void Outtaking(double intakeSpeed) {
+    intakeMotor.set(intakeSpeed);
+    SmartDashboard.putNumber("Intake Speed", intakeSpeed);
   }
 
-  public void Stopintake(double intakerunspeed) {
+  public void Stopintake(double intakeSpeed) {
     intakeMotor.set(0);
-    SmartDashboard.putNumber("Intake %", intakerunspeed);
+    SmartDashboard.putNumber("Intake Speed", intakeSpeed);
   }
 
-  public void setVelocity(double velocity) {
-    intakeController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
+  public void setIntakeVelocity(double intakeVelocity) {
+    intakeController.setReference(intakeVelocity, CANSparkMax.ControlType.kVelocity);
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("INTAKE/leading roller speed", intakeMotor.getEncoder().getVelocity());
   }
 }

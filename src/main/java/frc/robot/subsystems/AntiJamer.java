@@ -21,7 +21,7 @@ public class AntiJamer extends SubsystemBase {
 
 	public AntiJamer() {
 		antiJamMotor = new CANSparkMax(Constants.AntiJamer.AntiJamerMotorID, MotorType.kBrushless);
-        antiJamMotor.restoreFactoryDefaults();
+    antiJamMotor.restoreFactoryDefaults();
     antiJamController.setP(Constants.AntiJamer.Antijamer_kP);
     antiJamController.setI(Constants.AntiJamer.Antijamer_kI);
     antiJamController.setD(Constants.AntiJamer.Antijamer_kD);
@@ -33,19 +33,18 @@ public class AntiJamer extends SubsystemBase {
     antiJamMotor.burnFlash();
 	}
 
-	public void RunAntiJamer(double antiJamSpeed){
-		antiJamMotor.set(antiJamSpeed);
-		SmartDashboard.putNumber("Intake %", antiJamSpeed);
+	public void RunAntiJamer(double antiJamerSpeed){
+		antiJamMotor.set(antiJamerSpeed);
+		SmartDashboard.putNumber("AntiJamer Speed", antiJamerSpeed);
 	}
-  public void StopAntiJamer(double antiJamSpeed){
+  public void StopAntiJamer(double antiJamerSpeed){
         antiJamMotor.set(0);
-		SmartDashboard.putNumber("Intake %", antiJamSpeed);
+		SmartDashboard.putNumber("AntiJamer Speed", antiJamerSpeed);
 	}
-  public void setVelocity(double velocity) {
-    antiJamController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
+  public void setVelocity(double antiJamerVelocity) {
+    antiJamController.setReference(antiJamerVelocity, CANSparkMax.ControlType.kVelocity);
   }
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("INTAKE/leading roller speed", antiJamMotor.getEncoder().getVelocity());
   }
 }

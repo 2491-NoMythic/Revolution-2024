@@ -18,7 +18,7 @@ public class SpinDexerSubsystem extends SubsystemBase{
 	CANSparkMax spinDexerMotor;
 	SparkPIDController spinDexerController;
 
-	public void Spindexer() {
+	public SpinDexerSubsystem() {
 		spinDexerMotor = new CANSparkMax(Constants.SpinDexer.spindDexerMotorID, MotorType.kBrushless);
 		spinDexerMotor.restoreFactoryDefaults();
 		spinDexerController.setP(Constants.SpinDexer.SpinDexer_kP);
@@ -32,30 +32,23 @@ public class SpinDexerSubsystem extends SubsystemBase{
 		spinDexerMotor.burnFlash();
 	}
 
-	/**
-	 * makes the main part of the spindexer spin
-	 * 
-	 * @param motorPercent is the speed of the motor
-	 * 
-	 */
-	public void rotateClockWise(double motorPercent) {
-		spinDexerMotor.set(motorPercent);
-		SmartDashboard.putNumber("Spindexer %", motorPercent);
+	public void rotateClockWise(double spinDexerSpeed) {
+		spinDexerMotor.set(spinDexerSpeed);
+		SmartDashboard.putNumber("Spindexer Speed", spinDexerSpeed);
 	}
 
-	public void rotateCounterClockWise(double motorPercent) {
-		spinDexerMotor.set(motorPercent);
-		SmartDashboard.putNumber("Spindexer %", motorPercent);
+	public void rotateCounterClockWise(double spinDexerSpeed) {
+		spinDexerMotor.set(spinDexerSpeed);
+		SmartDashboard.putNumber("Spindexer Speed", spinDexerSpeed);
 	}
 
-	public void stopRotating(double motorPercent) {
+	public void stopRotating(double spinDexerSpeed) {
 		spinDexerMotor.set(0);
 	}
-	public void setVelocity(double velocity) {
-		spinDexerController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
+	public void setSpinDexerVelocity(double spinDexerVelocity) {
+		spinDexerController.setReference(spinDexerVelocity, CANSparkMax.ControlType.kVelocity);
 	  }
 	@Override
 	public void periodic() {
-	  SmartDashboard.putNumber("Shooter Feeder Speed", spinDexerMotor.getEncoder().getVelocity());
 	}
 }

@@ -19,8 +19,8 @@ public class ShooterFeeder extends SubsystemBase {
 	CANSparkMax shooterFeederMotor;
 	SparkPIDController shooterFeederController;
 
-	public void Intake() {
-		//intakeMotor = new CANSparkMax(Constants.Intake.intakeMotor, MotorType.kBrushless);
+	public ShooterFeeder() {
+		//shooterFeederMotor = new CANSparkMax(Constants.Intake.intakeMotor, MotorType.kBrushless);
     shooterFeederMotor.restoreFactoryDefaults();
     shooterFeederController.setP(Constants.ShooterFeeder.ShooterFeeder_kP);
     shooterFeederController.setI(Constants.ShooterFeeder.ShooterFeeder_kI);
@@ -33,19 +33,18 @@ public class ShooterFeeder extends SubsystemBase {
     shooterFeederMotor.burnFlash();
 	}
 
-	public void Intaking(double shooterFeederSpeed){
+	public void FeedingShooter(double shooterFeederSpeed){
 		shooterFeederMotor.set(shooterFeederSpeed);
-		SmartDashboard.putNumber("ShooterFeeder %", shooterFeederSpeed);
+		SmartDashboard.putNumber("ShooterFeeder Speed", shooterFeederSpeed);
 	}
-    public void Stopintake(double shooterFeederSpeed){
+    public void StopFeedingShooter(double shooterFeederSpeed){
 		shooterFeederMotor.set(0);
-		SmartDashboard.putNumber("ShooterFeeder %", shooterFeederSpeed);
+		SmartDashboard.putNumber("ShooterFeeder Speed", shooterFeederSpeed);
 	}
-    public void setVelocity(double velocity) {
-        shooterFeederController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
+    public void setShooterFeederVelocity(double shooterFeederVelocity) {
+        shooterFeederController.setReference(shooterFeederVelocity, CANSparkMax.ControlType.kVelocity);
   }
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter Feeder Speed", shooterFeederMotor.getEncoder().getVelocity());
   }
 }
