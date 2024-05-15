@@ -19,7 +19,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 	XiaohanArcade m_robotDrive;
 	TalonFXConfigurator leftConfigurator;
 	TalonFXConfigurator rightConfigurator;
-	CurrentLimitsConfigs currentLimitsConfigs;
+	CurrentLimitsConfigs currentLimitConfigs;
 	double leftTargetSpeed;
 	double rightTargetSpeed;
 
@@ -55,9 +55,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
 		driveRightMotor2.setControl(new Follower(driveRightMotor1.getDeviceID(), false));
 
 		// Current Limiting
-		currentLimitsConfigs = new CurrentLimitsConfigs();
-		currentLimitsConfigs.SupplyCurrentLimitEnable = true;
-		currentLimitsConfigs.StatorCurrentLimitEnable = true;
+		currentLimitConfigs = new CurrentLimitsConfigs();
+		currentLimitConfigs.SupplyCurrentLimitEnable = true;
+		currentLimitConfigs.StatorCurrentLimitEnable = true;
 
 		m_robotDrive = new XiaohanArcade(driveLeftMotor1, driveRightMotor1);
 	}
@@ -70,10 +70,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 	 * @param statorLimit the stator limit to apply to the motors
 	 */
 	private void CurrentLimit(double supplyLimit, double statorLimit) {
-		currentLimitsConfigs.SupplyCurrentLimit = supplyLimit;
-		currentLimitsConfigs.StatorCurrentLimit = statorLimit;
-		leftConfigurator.apply(currentLimitsConfigs);
-		rightConfigurator.apply(currentLimitsConfigs);
+		currentLimitConfigs.SupplyCurrentLimit = supplyLimit;
+		currentLimitConfigs.StatorCurrentLimit = statorLimit;
+		leftConfigurator.apply(currentLimitConfigs);
+		rightConfigurator.apply(currentLimitConfigs);
 	}
 
 	public void DifferentialDrive(double speed, double rotation, double supplyLimit, double statorLimit) {

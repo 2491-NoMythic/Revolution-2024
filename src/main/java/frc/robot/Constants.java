@@ -26,10 +26,10 @@ public final class Constants {
     public final static int DriveTalonLeftMotor2 = 1;
     public final static int DriveTalonRightMotor1 = 2;
     public final static int DriveTalonRightMotor2 = 3;
-    public final static double DriveSpeed = 1;
-    public final static double TurnSpeed = .5;
-    public static final double MAX_POWER_OUTPUT = 0.3;
+    public static final double STATOR_LIMIT = 50;
+    public static final double SUPPLY_LIMIT = 50;
     
+    //PID
     public static final double Drivetrain_KP = .2;
     public static final double Drivetrain_KI = 1;
     public static final double Drivetrain_KD = .01;
@@ -46,10 +46,9 @@ public final class Constants {
     public final static double ShooterWheelDiameter = 4.0; // Inches
     public final static double ShooterEncoderToInches = ShooterWheelDiameter * Math.PI / ShooterEncoderTicks; // Makes number of inches
     public final static double ShooterEncoderVelocityToRPS = 1.0 / ShooterEncoderTicks * 10;
-    public static final double ShootSpeedRpm = 20000; // Rpm
-    public static final double ShootSpeedRps = 19500;// TODO change for reality.
     public final static double ShooterSpeed = .5;
 
+    //PID
     public static final double Shooter_kP = 0.00002;
     public static final double Shooter_kI = 0;
     public static final double Shooter_kD = 0.0008;
@@ -59,6 +58,8 @@ public final class Constants {
     public final static int SpindDexerMotorID = 9;
     public final static double RotateClockWise = .33; 
 		public final static double RotateCounterClockWise = -.33;
+
+    //PID
     public static final double SpinDexer_kP = 0;
     public static final double SpinDexer_kI = 0;
     public static final double SpinDexer_kD = 0;
@@ -69,6 +70,8 @@ public final class Constants {
     public final static int IntakeMotorID = 10;
     public final static double IntakeSpeed = .25;
     public final static double OuttakeSpeed = -.25;
+
+    //PID
     public static final double Intake_kP = 0;
     public static final double Intake_kI = 0;
     public static final double Intake_kD = 0;
@@ -78,6 +81,8 @@ public final class Constants {
   public final class ShooterFeeder {
     public final static int ShooterFeederMotorID = 11;
     public final static double ShooterFeeding = .5;
+
+    //PID
     public static final double ShooterFeeder_kP = 0;
     public static final double ShooterFeeder_kI = 0;
     public static final double ShooterFeeder_kD = 0;
@@ -87,6 +92,8 @@ public final class Constants {
   public final class AntiJamer {
     public final static int AntiJamerMotorID = 12;
     public final static double AntiJamerSpeed = .25;
+
+    //PID
     public static final double Antijamer_kP = 0;
     public static final double Antijamer_kI = 0;
     public static final double Antijamer_kD = 0;

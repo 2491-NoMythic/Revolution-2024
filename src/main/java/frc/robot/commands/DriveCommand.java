@@ -8,6 +8,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class DriveCommand extends Command {
@@ -38,7 +39,7 @@ public class DriveCommand extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.DifferentialDrive(moveSupplier.getAsDouble(), turnSupplier.getAsDouble(), 50, 50);
+        drivetrain.DifferentialDrive(moveSupplier.getAsDouble(), turnSupplier.getAsDouble(), Constants.Drivetrain.SUPPLY_LIMIT, Constants.Drivetrain.STATOR_LIMIT);
     }
 
     // Called once the command ends or is interrupted.
