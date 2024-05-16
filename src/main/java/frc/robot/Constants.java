@@ -91,7 +91,7 @@ public final class Constants {
 
   public final class AntiJamer {
     public final static int AntiJamerMotorID = 12;
-    public final static double AntiJamerSpeed = .25;
+    public final static double RunAntiJamer = .25;
 
     //PID
     public static final double Antijamer_kP = 0;

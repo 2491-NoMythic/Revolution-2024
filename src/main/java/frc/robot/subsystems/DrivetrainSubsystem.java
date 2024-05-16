@@ -62,13 +62,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 		m_robotDrive = new XiaohanArcade(driveLeftMotor1, driveRightMotor1);
 	}
 
-	/**
-	 * configures the current limits on the shooter motors. Can be ran as many times
-	 * as you want
-	 * 
-	 * @param supplyLimit the supply limit to apply to the motors
-	 * @param statorLimit the stator limit to apply to the motors
-	 */
 	private void CurrentLimit(double supplyLimit, double statorLimit) {
 		currentLimitConfigs.SupplyCurrentLimit = supplyLimit;
 		currentLimitConfigs.StatorCurrentLimit = statorLimit;

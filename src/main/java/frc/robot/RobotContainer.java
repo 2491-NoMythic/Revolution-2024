@@ -4,23 +4,23 @@
 
 package frc.robot;
 
-import frc.robot.Constants.Drivetrain;
-import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AntiJamerCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.ShootingCommand;
+import frc.robot.commands.OuttakeCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.ShooterFeederCommand;
+import frc.robot.commands.SpinDexerCommand;
 import frc.robot.subsystems.AntiJamerSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterFeederSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpinDexerSubsystem;
-import frc.robot.subsystems.XiaohanArcade;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
-import edu.wpi.first.networktables.DoubleSubscriber;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,15 +28,6 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-/**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in
- * the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of
- * the robot (including
- * subsystems, commands, and trigger mappings) should be declared here.
- */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final boolean intakeExists = Preferences.getBoolean("Intake", true);
@@ -54,6 +45,7 @@ public class RobotContainer {
   private Joystick m_mainJoystick;
 
   DriveCommand defaultDriveCommand;
+  OuttakeCommand outtakeCommand;
 
   BooleanSupplier shootingSupplier;
   BooleanSupplier intakeSupplier;
@@ -63,9 +55,6 @@ public class RobotContainer {
   ParallelCommandGroup intakeCommand;
   ParallelCommandGroup shootingCommand;
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
   public RobotContainer() {
     Preferences.initBoolean("Intake", false);
     Preferences.initBoolean("Shooter", false);
@@ -85,8 +74,6 @@ public class RobotContainer {
     intakeInst();
     shooterInst();
     spindexerInst();
-
-    // configure the trigger bindings
     configureBindings();
 
   }
@@ -101,6 +88,7 @@ public class RobotContainer {
 
   private void intakeInst() {
     intake = new IntakeSubsystem();
+
   }
 
   private void shooterInst() {
@@ -134,6 +122,20 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    shootingCommand = new ParallelCommandGroup(
+      new SpinDexerCommand(spinDexer),
+      new ShooterFeederCommand(shooterFeeder),
+      new ShooterCommand(shooter),
+      new AntiJamerCommand(antijamer));
+      new Trigger(shootingSupplier).whileTrue(shootingCommand);
+
+    intakeCommand = new ParallelCommandGroup(
+      new IntakeCommand(intake),
+      new SpinDexerCommand(spinDexer),
+      new AntiJamerCommand(antijamer));
+      new Trigger(intakeSupplier).whileTrue(intakeCommand);
+    
+      new Trigger(outtakSupplier).whileTrue(outtakeCommand);
   }
 
   /**

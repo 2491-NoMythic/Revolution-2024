@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.controls.Follower;
@@ -17,7 +18,9 @@ import frc.robot.Constants;
 public class ShooterSubsystem extends SubsystemBase{
     TalonFX leftShooterMotor;
     TalonFX rightShooterMotor;
-    TalonFXConfigurator leftShooterConfigurator;
+    TalonFXConfigurator ShooterConfigurator;
+    CurrentLimitsConfigs currentLimitConfigs;
+
 
     public ShooterSubsystem() {
 
@@ -29,16 +32,22 @@ public class ShooterSubsystem extends SubsystemBase{
         rightShooterMotor.setControl(new Follower(4, true));
 
         // PID tuning
-        leftShooterConfigurator = leftShooterMotor.getConfigurator();
-        leftShooterConfigurator.apply(
+        ShooterConfigurator = leftShooterMotor.getConfigurator();
+        ShooterConfigurator.apply(
                 new Slot0Configs().
                 withKP(Constants.Shooter.Shooter_kP).
                 withKI(Constants.Shooter.Shooter_kI).
                 withKD(Constants.Shooter.Shooter_kD));
     }
+    public void currentLimit(double supplyLimit, double statorLimit) {
+        currentLimitConfigs.SupplyCurrentLimit = supplyLimit;
+		currentLimitConfigs.StatorCurrentLimit = statorLimit;
+        ShooterConfigurator.apply(currentLimitConfigs);
+    }
 
-    public void ShooterOn(double shooterSpeed) {
+    public void ShooterOn(double shooterSpeed, double supplyLimit, double statorLimit) {
         leftShooterMotor.set(shooterSpeed);
+        currentLimit(supplyLimit, statorLimit);
     }
 
     public void shooterOff(double shooterSpeed) {
