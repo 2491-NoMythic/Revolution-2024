@@ -22,7 +22,7 @@ public class HoodSubsystem extends SubsystemBase {
 
 	/**
 	 * Set hood position
-	 * @param servoUnits (between 0-180 servo units)
+	 * @param setHoodPosition (between 0-180 servo units)
 	 * 0 is zero degrees and 180 is 270 degrees on servo (maximum supported hood position)
 	 */
 	public void setHoodPosition(double servoUnits){
@@ -35,13 +35,5 @@ public class HoodSubsystem extends SubsystemBase {
 	public void periodic() {
 		SmartDashboard.putNumber("servo1", servo1.getAngle());
 		SmartDashboard.putNumber("servo2", servo2.getAngle());
-
-		//final double hoodPosition = SmartDashboard.getNumber("hood position overide", 0);
-
-		//if (hoodPosition > 0 && hoodPosition != frc.robot.Shooter.shooterHoodPosition)
-		
-			//frc.robot.Shooter.shooterHoodPosition = hoodPosition;
-		
-		//SmartDashboard.putNumber("Angle", frc.robot.Shooter.shooterHoodPosition);
 	}
 }

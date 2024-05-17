@@ -46,6 +46,7 @@ public final class Constants {
     public final static double ShooterWheelDiameter = 4.0; // Inches
     public final static double ShooterEncoderToInches = ShooterWheelDiameter * Math.PI / ShooterEncoderTicks; // Makes number of inches
     public final static double ShooterEncoderVelocityToRPS = 1.0 / ShooterEncoderTicks * 10;
+    public final static double setHoodPosition = 190;
     public final static double ShooterSpeed = .5;
 
     //PID
