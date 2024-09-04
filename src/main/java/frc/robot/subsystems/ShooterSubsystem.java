@@ -24,6 +24,7 @@ public class ShooterSubsystem extends SubsystemBase{
 
     public ShooterSubsystem() {
 
+        currentLimitConfigs = new CurrentLimitsConfigs();
         // setting the motors
         leftShooterMotor = new TalonFX(Constants.Shooter.LeftShooterMotorID);
         rightShooterMotor = new TalonFX(Constants.Shooter.RightShooterMotorID);
@@ -50,7 +51,7 @@ public class ShooterSubsystem extends SubsystemBase{
         currentLimit(supplyLimit, statorLimit);
     }
 
-    public void shooterOff(double shooterSpeed) {
+    public void shooterOff() {
         leftShooterMotor.set(0);
     }
 

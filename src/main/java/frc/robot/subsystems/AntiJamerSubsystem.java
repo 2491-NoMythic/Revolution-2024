@@ -38,9 +38,9 @@ public class AntiJamerSubsystem extends SubsystemBase {
 		antiJamMotor.set(antiJamerSpeed);
 		SmartDashboard.putNumber("AntiJamer Speed", antiJamerSpeed);
 	}
-  public void StopAntiJamer(double antiJamerSpeed){
+  public void StopAntiJamer(){
         antiJamMotor.set(0);
-		SmartDashboard.putNumber("AntiJamer Speed", antiJamerSpeed);
+		SmartDashboard.putNumber("AntiJamer Speed", 0);
 	}
   public void setVelocity(double antiJamerVelocity) {
     antiJamController.setReference(antiJamerVelocity, CANSparkMax.ControlType.kVelocity);
