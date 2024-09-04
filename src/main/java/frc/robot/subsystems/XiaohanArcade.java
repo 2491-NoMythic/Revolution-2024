@@ -14,8 +14,11 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.drive.RobotDriveBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import java.util.function.DoubleConsumer;
 
+import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -109,7 +112,11 @@ public class XiaohanArcade extends RobotDriveBase implements Sendable, AutoClose
    */
   @SuppressWarnings({"this-escape"})
   public XiaohanArcade(TalonFX leftMotor, TalonFX rightMotor) {
-    this((double output) -> leftMotor.setControl(new VelocityVoltage(output)), (double output) -> rightMotor.setControl(new VelocityVoltage(output)));
+    this(
+      //to do, find out where the 16 value is coming from
+      (double output) -> leftMotor.setControl(new DutyCycleOut(output/16)),
+      (double output) -> rightMotor.setControl(new DutyCycleOut(output/16))
+    );
     SendableRegistry.addChild(this, leftMotor);
     SendableRegistry.addChild(this, rightMotor);
   }

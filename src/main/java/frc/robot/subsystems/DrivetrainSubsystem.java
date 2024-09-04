@@ -42,13 +42,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
 				new Slot0Configs().
 				withKP(Constants.Drivetrain.Drivetrain_KP).
 				withKI(Constants.Drivetrain.Drivetrain_KI).
-				withKD(Constants.Drivetrain.Drivetrain_KP));
+				withKD(Constants.Drivetrain.Drivetrain_KD));
 		rightConfigurator = driveRightMotor1.getConfigurator();
 		rightConfigurator.apply(
 				new Slot0Configs().
 				withKP(Constants.Drivetrain.Drivetrain_KP).
 				withKI(Constants.Drivetrain.Drivetrain_KI).
-				withKD(Constants.Drivetrain.Drivetrain_KP));
+				withKD(Constants.Drivetrain.Drivetrain_KD));
 
 		// Setting Followers
 		driveLeftMotor2.setControl(new Follower(driveLeftMotor1.getDeviceID(), false));

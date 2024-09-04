@@ -30,9 +30,9 @@ public final class Constants {
     public static final double SUPPLY_LIMIT = 50;
     
     //PID
-    public static final double Drivetrain_KP = .2;
-    public static final double Drivetrain_KI = 1;
-    public static final double Drivetrain_KD = .01;
+    public static final double Drivetrain_KP = 0.5;
+    public static final double Drivetrain_KI = 0;
+    public static final double Drivetrain_KD = .0;
   }
 
   public final class Shooter {

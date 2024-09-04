@@ -19,7 +19,7 @@ public class ShooterFeederSubsystem extends SubsystemBase {
 	SparkPIDController shooterFeederController;
 
 	public ShooterFeederSubsystem() {
-		//shooterFeederMotor = new CANSparkMax(Constants.Intake.intakeMotor, MotorType.kBrushless);
+		/*shooterFeederMotor = new CANSparkMax(Constants.Intake.intakeMotor, MotorType.kBrushless);
     shooterFeederMotor.restoreFactoryDefaults();
     shooterFeederController.setP(Constants.ShooterFeeder.ShooterFeeder_kP);
     shooterFeederController.setI(Constants.ShooterFeeder.ShooterFeeder_kI);
@@ -29,19 +29,19 @@ public class ShooterFeederSubsystem extends SubsystemBase {
     shooterFeederMotor.setIdleMode(IdleMode.kCoast);
     shooterFeederMotor.setSmartCurrentLimit(25, 40, 1000);
     shooterFeederMotor.getEncoder().setPositionConversionFactor(1);
-    shooterFeederMotor.burnFlash();
+    shooterFeederMotor.burnFlash();*/
 	}
 
 	public void FeedingShooter(double shooterFeederSpeed){
-		shooterFeederMotor.set(shooterFeederSpeed);
+		/*shooterFeederMotor.set(shooterFeederSpeed);*/
 		SmartDashboard.putNumber("ShooterFeeder Speed", shooterFeederSpeed);
 	}
     public void StopFeedingShooter(double shooterFeederSpeed){
-		shooterFeederMotor.set(0);
+		/*shooterFeederMotor.set(0);*/
 		SmartDashboard.putNumber("ShooterFeeder Speed", shooterFeederSpeed);
 	}
     public void setShooterFeederVelocity(double shooterFeederVelocity) {
-        shooterFeederController.setReference(shooterFeederVelocity, CANSparkMax.ControlType.kVelocity);
+       // shooterFeederController.setReference(shooterFeederVelocity, CANSparkMax.ControlType.kVelocity);
   }
 
   

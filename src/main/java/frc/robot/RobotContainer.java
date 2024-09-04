@@ -70,9 +70,6 @@ public class RobotContainer {
     outtakSupplier = () -> m_mainJoystick.getPOV() == 180;
 
     driveTrainInst();
-    intakeInst();
-    shooterInst();
-    spindexerInst();
     configureBindings();
 
   }
@@ -107,21 +104,25 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    shootingCommand = new ParallelCommandGroup(
-      new SpinDexerCommand(spinDexer),
-      new ShooterFeederCommand(shooterFeeder),
-      new ShooterCommand(shooter),
-      new AntiJamerCommand(antijamer));
-
-    intakeCommand = new ParallelCommandGroup(
-      new IntakeCommand(intake),
-      new SpinDexerCommand(spinDexer),
-      new AntiJamerCommand(antijamer));
+    if (antijamerExists&&spindexerExists&&shooterExists&&shooterfeederExists){  
+    
+      shootingCommand = new ParallelCommandGroup(
+        new SpinDexerCommand(spinDexer),
+        new ShooterFeederCommand(shooterFeeder),
+        new ShooterCommand(shooter),
+        new AntiJamerCommand(antijamer));
+      new Trigger(shootingSupplier).whileTrue(shootingCommand);
+    }
+    if (antijamerExists&&intakeExists&&spindexerExists) {
+      
+      intakeCommand = new ParallelCommandGroup(
+        new IntakeCommand(intake),
+        new SpinDexerCommand(spinDexer),
+        new AntiJamerCommand(antijamer));
 
       new Trigger(intakeSupplier).whileTrue(intakeCommand);
-      new Trigger(outtakSupplier).whileTrue(outtakeCommand);
-      new Trigger(shootingSupplier).whileTrue(shootingCommand);
-
+    }
+      //new Trigger(outtakSupplier).whileTrue(outtakeCommand);
   }
 
   public Command getAutonomousCommand() {

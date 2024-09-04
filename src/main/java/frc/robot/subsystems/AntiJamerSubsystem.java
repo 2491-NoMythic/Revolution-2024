@@ -21,6 +21,7 @@ public class AntiJamerSubsystem extends SubsystemBase {
 
 	public AntiJamerSubsystem() {
 		antiJamMotor = new CANSparkMax(Constants.AntiJamer.AntiJamerMotorID, MotorType.kBrushless);
+    antiJamController = antiJamMotor.getPIDController();
     antiJamMotor.restoreFactoryDefaults();
     antiJamController.setP(Constants.AntiJamer.Antijamer_kP);
     antiJamController.setI(Constants.AntiJamer.Antijamer_kI);
