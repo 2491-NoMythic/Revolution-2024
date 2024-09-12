@@ -114,8 +114,8 @@ public class XiaohanArcade extends RobotDriveBase implements Sendable, AutoClose
   public XiaohanArcade(TalonFX leftMotor, TalonFX rightMotor) {
     this(
       //to do, find out where the 16 value is coming from
-      (double output) -> leftMotor.setControl(new DutyCycleOut(output/16)),
-      (double output) -> rightMotor.setControl(new DutyCycleOut(output/16))
+      (double output) -> leftMotor.setControl(new DutyCycleOut(output/32)),
+      (double output) -> rightMotor.setControl(new DutyCycleOut(output/32))
     );
     SendableRegistry.addChild(this, leftMotor);
     SendableRegistry.addChild(this, rightMotor);
