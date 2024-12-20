@@ -34,6 +34,7 @@ public class RobotContainer {
   private final boolean spindexerExists = Preferences.getBoolean("SpinDexer", true);
   private final boolean shooterfeederExists = Preferences.getBoolean("ShooterFeeder", true);
   private final boolean antijamerExists = Preferences.getBoolean("AntiJamer", true);
+  private final boolean safeModeOn = Preferences.getBoolean("SafeMode", false);
 
   private DrivetrainSubsystem driveTrainSubsystem;
   private IntakeSubsystem intake;
@@ -53,6 +54,7 @@ public class RobotContainer {
   DoubleSupplier turnDoubleSupplier;
   ParallelCommandGroup intakeCommand;
   ParallelCommandGroup shootingCommand;
+  double safeMultipler;
 
   public RobotContainer() {
     Preferences.initBoolean("Intake", false);
@@ -63,6 +65,7 @@ public class RobotContainer {
     if (spindexerExists) {spindexerInst();}
     if (shooterfeederExists) {shooterfeederInst();}
     if (antijamerExists) {antijamerInst();}
+    if (safeModeOn) {safeMultipler = 0.25;}
 
     m_mainJoystick = new Joystick(Constants.OperatorConstants.MainControllerPort);
     shootingSupplier = m_mainJoystick::getTrigger;
@@ -77,8 +80,8 @@ public class RobotContainer {
   private void driveTrainInst() {
     driveTrainSubsystem = new DrivetrainSubsystem();
     defaultDriveCommand = new DriveCommand(driveTrainSubsystem,
-        moveDoubleSupplier = () -> m_mainJoystick.getY(),
-        turnDoubleSupplier = () -> m_mainJoystick.getZ());
+        moveDoubleSupplier = () -> m_mainJoystick.getY()*safeMultipler,
+        turnDoubleSupplier = () -> m_mainJoystick.getZ()*safeMultipler);
     driveTrainSubsystem.setDefaultCommand(defaultDriveCommand);
   }
 
