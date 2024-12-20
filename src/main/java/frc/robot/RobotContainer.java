@@ -59,13 +59,19 @@ public class RobotContainer {
   public RobotContainer() {
     Preferences.initBoolean("Intake", false);
     Preferences.initBoolean("Shooter", false);
+    Preferences.initBoolean("SafeMode", true);
+    Preferences.initBoolean("SpinDexer", false);
+    Preferences.initBoolean("ShooterFeeder", false);
+    Preferences.initBoolean("AntiJamer", false);
+
 
     if (intakeExists) {intakeInst();}
     if (shooterExists) {shooterInst();}
     if (spindexerExists) {spindexerInst();}
     if (shooterfeederExists) {shooterfeederInst();}
     if (antijamerExists) {antijamerInst();}
-    if (safeModeOn) {safeMultipler = 0.25;}
+    if (safeModeOn) {safeMultipler = 0.45;}
+      else {safeMultipler = 1;}
 
     m_mainJoystick = new Joystick(Constants.OperatorConstants.MainControllerPort);
     shootingSupplier = m_mainJoystick::getTrigger;
