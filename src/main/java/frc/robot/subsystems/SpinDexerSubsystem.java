@@ -4,33 +4,31 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkPIDController;
-import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.ClosedLoopConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.SpinDexer;
 
 /** Add your docs here. */
 public class SpinDexerSubsystem extends SubsystemBase{
-	CANSparkMax spinDexerMotor;
-	SparkPIDController spinDexerController;
+	SparkMax spinDexerMotor;
+	SparkMaxConfig spinDexerConfig;
 
 	public SpinDexerSubsystem() {
-		spinDexerMotor = new CANSparkMax(Constants.SpinDexer.SpindDexerMotorID, MotorType.kBrushless);
-		spinDexerMotor.restoreFactoryDefaults();
-		spinDexerController = spinDexerMotor.getPIDController();
-		spinDexerController.setP(Constants.SpinDexer.SpinDexer_kP);
-		spinDexerController.setI(Constants.SpinDexer.SpinDexer_kI);
-		spinDexerController.setD(Constants.SpinDexer.SpinDexer_kD);
-		spinDexerController.setFF(Constants.SpinDexer.SpinDexer_kFF);
-		spinDexerController = spinDexerMotor.getPIDController();
-		spinDexerMotor.setIdleMode(IdleMode.kCoast);
-		spinDexerMotor.setSmartCurrentLimit(25, 40, 1000);
-		spinDexerMotor.getEncoder().setPositionConversionFactor(1);
-		spinDexerMotor.burnFlash();
+		spinDexerMotor = new SparkMax(SpinDexer.SpindDexerMotorID, MotorType.kBrushless);
+		spinDexerConfig.apply(new ClosedLoopConfig().pidf(
+			SpinDexer.SpinDexer_kP,
+			SpinDexer.SpinDexer_kI,
+			SpinDexer.SpinDexer_kD,
+			SpinDexer.SpinDexer_kFF));
+		spinDexerConfig.idleMode(IdleMode.kCoast);
+		spinDexerConfig.smartCurrentLimit(25, 40, 1000);
+		spinDexerConfig.encoder.positionConversionFactor(1);
 	}
 
 	public void rotateClockWise(double spinDexerSpeed) {
@@ -47,7 +45,7 @@ public class SpinDexerSubsystem extends SubsystemBase{
 		spinDexerMotor.set(0);
 	}
 	public void setSpinDexerVelocity(double spinDexerVelocity) {
-		spinDexerController.setReference(spinDexerVelocity, CANSparkMax.ControlType.kVelocity);
+		spinDexerConfig.setReference(spinDexerVelocity, SparkMax.ControlType.kVelocity);
 	  }
 	@Override
 	public void periodic() {

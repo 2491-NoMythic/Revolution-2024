@@ -4,13 +4,14 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.SparkPIDController;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.mechanisms.swerve.LegacySwerveRequest.Idle;
+import com.revrobotics.spark.SparkBase.ControlType;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,23 +25,15 @@ public class AntiJamerSubsystem extends SubsystemBase {
   
 
 	public AntiJamerSubsystem() {
-		antiJamMotor = new SparkMax(Constants.AntiJamer.AntiJamerMotorID, MotorType.kBrushless);
+		antiJamMotor = new SparkMax(Constants.AntiJamer.AntiJamerMotorID, com.revrobotics.spark.SparkLowLevel.MotorType.kBrushless);
     antiJamConfig.apply(new ClosedLoopConfig().pidf(
       Constants.AntiJamer.Antijamer_kP,
       Constants.AntiJamer.Antijamer_kI,
       Constants.AntiJamer.Antijamer_kD,
       Constants.AntiJamer.Antijamer_kFF));
-    antiJamMotor.restoreFactoryDefaults();
-    antiJamConfig.
-    antiJamConfig.s(Constants.AntiJamer.Antijamer_kP);
-    antiJamConfig.setI(Constants.AntiJamer.Antijamer_kI);
-    antiJamConfig.setD(Constants.AntiJamer.Antijamer_kD);
-    antiJamConfig.setFF(Constants.AntiJamer.Antijamer_kFF);
-    antiJamConfig = antiJamMotor.getPIDController();
-    antiJamMotor.setIdleMode(IdleMode.kCoast);
-    antiJamMotor.setSmartCurrentLimit(25, 40, 1000);
-    antiJamMotor.getEncoder().setPositionConversionFactor(1);
-    antiJamMotor.burnFlash();
+    antiJamConfig.inverted(true).idleMode(IdleMode.kBrake);
+
+    antiJamConfig.encoder.positionConversionFactor(1);
 	}
 
 	public void RunAntiJamer(double antiJamerSpeed){
@@ -52,7 +45,7 @@ public class AntiJamerSubsystem extends SubsystemBase {
 		SmartDashboard.putNumber("AntiJamer Speed", 0);
 	}
   public void setVelocity(double antiJamerVelocity) {
-    antiJamConfig.setReference(antiJamerVelocity, CANSparkMax.ControlType.kVelocity);
+    antiJamConfig.setReference.(antiJamerVelocity, SparkMax.ControlType.kVelocity);
   }
   @Override
   public void periodic() {
